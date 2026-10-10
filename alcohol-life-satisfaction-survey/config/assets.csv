@@ -1,0 +1,13 @@
+id,kind,path,url
+llcp_main,data,data/raw/LLCP2023XPT.zip,https://www.cdc.gov/brfss/annual_data/2023/files/LLCP2023XPT.zip
+llcp_v1,data,data/raw/LLCP23V1_XPT.zip,https://www.cdc.gov/brfss/annual_data/2023/files/LLCP23V1_XPT.ZIP
+llcp_v2,data,data/raw/LLCP23V2_XPT.zip,https://www.cdc.gov/brfss/annual_data/2023/files/LLCP23V2_XPT.ZIP
+llcp_v3,data,data/raw/LLCP23V3_XPT.zip,https://www.cdc.gov/brfss/annual_data/2023/files/LLCP23V3_XPT.ZIP
+annual_page,reference,assets/references/annual_2023.html,https://www.cdc.gov/brfss/annual_data/annual_2023.html
+module_page,reference,assets/references/modules_category2023.html,https://www.cdc.gov/brfss/questionnaires/modules/category2023.htm
+multi_version_page,reference,assets/references/llcp_multiq.html,https://www.cdc.gov/brfss/annual_data/2023/llcp_multiq.html
+questionnaire,reference,assets/references/questionnaire_2023.pdf,https://www.cdc.gov/brfss/questionnaires/pdf-ques/2023-BRFSS-Questionnaire-508.pdf
+codebook,reference,assets/references/codebook_2023.zip,https://www.cdc.gov/brfss/annual_data/2023/zip/codebook23_llcp-v2-508.zip
+overview,reference,assets/references/overview_2023.pdf,https://www.cdc.gov/brfss/annual_data/2023/pdf/Overview_2023-508.pdf
+module_weights,reference,assets/references/module_weights_2023.pdf,https://www.cdc.gov/brfss/annual_data/2023/pdf/Complex-Sampling-Weights-and-Preparing-Module-Data-for-Analysis-2023-508.pdf
+calculated_variables,reference,assets/references/calculated_variables_2023.pdf,https://www.cdc.gov/brfss/annual_data/2023/pdf/2023-calculated-variables-version4-508.pdf

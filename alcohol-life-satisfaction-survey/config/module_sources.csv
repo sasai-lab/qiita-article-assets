@@ -1,0 +1,44 @@
+source,weight,state_code,state_name
+llcp_main,_LLCPWT,1,Alabama
+llcp_main,_LLCPWT,2,Alaska
+llcp_main,_LLCPWT,4,Arizona
+llcp_main,_LLCPWT,5,Arkansas
+llcp_main,_LLCPWT,6,California
+llcp_main,_LLCPWT,9,Connecticut
+llcp_main,_LLCPWT,10,Delaware
+llcp_main,_LLCPWT,11,District of Columbia
+llcp_main,_LLCPWT,13,Georgia
+llcp_main,_LLCPWT,15,Hawaii
+llcp_main,_LLCPWT,16,Idaho
+llcp_main,_LLCPWT,17,Illinois
+llcp_main,_LLCPWT,18,Indiana
+llcp_main,_LLCPWT,19,Iowa
+llcp_main,_LLCPWT,20,Kansas
+llcp_main,_LLCPWT,22,Louisiana
+llcp_main,_LLCPWT,23,Maine
+llcp_main,_LLCPWT,25,Massachusetts
+llcp_main,_LLCPWT,27,Minnesota
+llcp_main,_LLCPWT,28,Mississippi
+llcp_main,_LLCPWT,29,Missouri
+llcp_main,_LLCPWT,30,Montana
+llcp_main,_LLCPWT,32,Nevada
+llcp_main,_LLCPWT,33,New Hampshire
+llcp_main,_LLCPWT,34,New Jersey
+llcp_main,_LLCPWT,35,New Mexico
+llcp_main,_LLCPWT,37,North Carolina
+llcp_main,_LLCPWT,38,North Dakota
+llcp_main,_LLCPWT,44,Rhode Island
+llcp_main,_LLCPWT,45,South Carolina
+llcp_main,_LLCPWT,49,Utah
+llcp_main,_LLCPWT,51,Virginia
+llcp_main,_LLCPWT,54,West Virginia
+llcp_main,_LLCPWT,55,Wisconsin
+llcp_v1,_LCPWTV1,24,Maryland
+llcp_v1,_LCPWTV1,26,Michigan
+llcp_v1,_LCPWTV1,31,Nebraska
+llcp_v1,_LCPWTV1,36,New York
+llcp_v1,_LCPWTV1,39,Ohio
+llcp_v2,_LCPWTV2,26,Michigan
+llcp_v2,_LCPWTV2,36,New York
+llcp_v2,_LCPWTV2,40,Oklahoma
+llcp_v3,_LCPWTV3,24,Maryland
