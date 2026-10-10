@@ -1,6 +1,6 @@
 # 飲酒の頻度・量と生活満足度：glmとsurveyの比較（BRFSS 2023）
 
-Qiitaの記事2本で使ったRのコード、図、結果の表です。
+Qiitaの記事2本で使った分析のRコード、図、結果の表です。
 
 - 記事1：禁酒で生活は劇的に良くなる？ 公開データをRで調べて、言えることを考えた
 - 記事2：Rのglmとsurveyを同じデータ・同じ式で比べてみた：飲酒と生活満足度のBRFSSデータで
@@ -16,55 +16,35 @@ Qiitaの記事2本で使ったRのコード、図、結果の表です。
 ## フォルダ構成
 
 ```text
-scripts/   Rスクリプト（00〜13を番号順に実行）
-config/    データの取得元（assets.csv）と、州・質問票の版・重みの対応（module_sources.csv）
-docs/      設計書（analysis-plan.md）。実行すると、検証レポートもここに作られます
+scripts/   分析のRスクリプト
+docs/      設計書（analysis-plan.md）
 figures/   記事で使った図
 results/   記事の表の元になった数値（comparison.csv。丸めていない値）
 renv.lock  パッケージのバージョン
-data/      実行時にデータが保存されます（リポジトリには含めていません）
 ```
+
+置いているのは、glmとsurveyの推定・検証のコードです。データの取得とクリーニングのコードは含めていないので、このフォルダだけで公開データから記事の数字までを再現することはできません。
+
+| ファイル | 中身 |
+| --- | --- |
+| `scripts/10_fit_glm_v2.R` | 通常のglm（頻度モデル・量モデル）と図 |
+| `scripts/11_verify_glm_v2.R` | glmの結果の検証（人数から計算した二項モデルの式、`predict`との照合） |
+| `scripts/12_fit_survey_v2.R` | svyglm（頻度モデル・量モデル）と、glmとの比較表・図 |
+| `scripts/13_verify_survey_v2.R` | surveyの結果の検証（重み付き集計、surveyの関数を使わずに計算した分散などとの照合） |
+| `scripts/regression_v2_helpers.R` | 各カテゴリの割合と、基準カテゴリとの差の信頼区間（記事2のコードの抜粋元） |
+| `scripts/survey_v2_helpers.R` | glmとsurveyの比較表と図 |
+| `scripts/cleaning_v2_helpers.R` | 頻度・量のカテゴリとモデル式の定義（記事1のコードの抜粋元） |
+| `scripts/data_helpers.R` | 頻度の日数換算、survey設計の作成など（記事のコードの抜粋元） |
+| `scripts/common.R` | 共通の設定 |
+| `scripts/00_setup.R`、`02_check_environment.R` | renvによる環境の準備と、生成データでの動作確認 |
 
 ## データ
 
-データはリポジトリに含めていません。`scripts/01_fetch_assets.R`が、CDCの公開ページから次のファイルを取得します（取得元のURLは`config/assets.csv`にあります）。
+データはリポジトリに含めていません。CDCの次のページから取得できます。
 
-- 2023年版の主ファイル（`LLCP2023XPT.zip`）と、質問票の版ごとの3ファイル（`LLCP23V1_XPT.zip`〜`LLCP23V3_XPT.zip`）
-- 質問票、コードブック、モジュールの重みの説明資料など
-
-データのページ：
-
-- [BRFSS 2023年版](https://www.cdc.gov/brfss/annual_data/annual_2023.html)
-- [質問票の版ごとのデータ](https://www.cdc.gov/brfss/annual_data/2023/llcp_multiq.html)
+- [BRFSS 2023年版](https://www.cdc.gov/brfss/annual_data/annual_2023.html)：主ファイル（`LLCP2023XPT.zip`）
+- [質問票の版ごとのデータ](https://www.cdc.gov/brfss/annual_data/2023/llcp_multiq.html)：版ごとの3ファイル（`LLCP23V1_XPT.zip`〜`LLCP23V3_XPT.zip`）
 
 ## 実行環境
 
-R 4.6.1、survey 4.5、haven 2.5.5、renv 1.3.1（macOSのHomebrew版Rで実行しました）。パッケージは`renv`で、このフォルダの中に入ります。図の日本語フォントには、macOSのヒラギノを使っています。
-
-## 実行手順
-
-このフォルダをカレントディレクトリにして、番号順に実行します。
-
-```sh
-Rscript --vanilla scripts/00_setup.R    # renvで環境を用意し、パッケージのバージョンを固定
-Rscript scripts/01_fetch_assets.R       # CDCの公式データ・資料を取得し、取得元とハッシュを記録
-Rscript scripts/02_check_environment.R  # 生成データでglm・svyglmなどの動作を確認
-Rscript scripts/03_check_assets.R       # 必要な変数、対象州・版の生活満足度と重みの収録を確認
-Rscript scripts/04_audit_sources.R      # 主ファイルと版別ファイルの照合
-Rscript scripts/05_clean_data.R         # 初期設計での整形（08がこの保存物を参照）
-Rscript scripts/06_verify_cleaning.R    # 05の検証
-Rscript scripts/07_profile_redesign.R   # 飲酒量の項目の収録を点検
-Rscript scripts/08_clean_data_v2.R      # 頻度・量の分類、共通対象、survey設計の作成
-Rscript scripts/09_verify_cleaning_v2.R # クリーニングの検証
-Rscript scripts/10_fit_glm_v2.R         # 通常のglm（2モデル）と図
-Rscript scripts/11_verify_glm_v2.R      # glmの結果の検証
-Rscript scripts/12_fit_survey_v2.R      # svyglm（2モデル）と比較表・図
-Rscript scripts/13_verify_survey_v2.R   # surveyの結果の検証
-```
-
-05・06は、分析の初期設計（`docs/analysis-plan-v1.3.md`）で作った整形と検証です。記事の結果には使っていませんが、08がこの保存物のハッシュを確認するため、今のスクリプトでは実行が必要です。
-
-## 記事の数値・図と出力の対応
-
-- 記事の表：`results/comparison.csv`。実行すると、同じものが`outputs/v2/step3/comparison.csv`に作られます。
-- 図：`figures/`。実行すると、`outputs/v2/step2/`と`outputs/v2/step3/`に作られます。
+R 4.6.1、survey 4.5、haven 2.5.5、renv 1.3.1（macOSのHomebrew版Rで実行しました）。図の日本語フォントには、macOSのヒラギノを使っています。
